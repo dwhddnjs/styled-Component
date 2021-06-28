@@ -24,6 +24,19 @@ const sizeStyles = css`
   `}
 `;
 
+const fullWidthStyle = css`
+  ${(props) =>
+    props.fullWidth &&
+    css`
+      width: 100%;
+      justify-content: center;
+      & + & {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+    `}
+`;
+
 const colorStyles = css`
   /*색상 */
   ${({ theme, color }) => {
@@ -36,12 +49,24 @@ const colorStyles = css`
       &:active {
         background: ${darken(0.1, selected)};
       }
+      ${(props) =>
+        props.outline &&
+        css`
+          color: ${selected};
+          background: none;
+          border: 1px solid ${selected};
+          &:hover {
+            background: ${selected};
+            color: white;
+          }
+        `}
     `;
   }}
 `;
 const StyledButton = styled.button`
   /* 공통 스타일 */
   display: inline-flex;
+  align-items: center;
   outline: none;
   border: none;
   border-radius: 4px;
@@ -50,21 +75,34 @@ const StyledButton = styled.button`
   cursor: pointer;
   padding-left: 1rem;
   padding-right: 1rem;
-  align-items: center;
-
-  /* 크기 */
-  ${sizeStyles}
-  ${colorStyles}
 
   /* 기타 */
-  & + & {
+  /* & + & {
     margin-left: 1rem;
-  }
+  } */
+
+  /* 크기 */
+  ${colorStyles}
+  ${sizeStyles}
+  ${fullWidthStyle}
 `;
 
-export default function Button({ children, color, size, ...rest }) {
+export default function Button({
+  children,
+  color,
+  size,
+  outline,
+  fullWidth,
+  ...rest
+}) {
   return (
-    <StyledButton color={color} size={size} {...rest}>
+    <StyledButton
+      color={color}
+      size={size}
+      outline={outline}
+      fullWidth={fullWidth}
+      {...rest}
+    >
       {children}
     </StyledButton>
   );
