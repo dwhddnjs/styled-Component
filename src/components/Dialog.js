@@ -95,13 +95,13 @@ const ButtonGroup = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border: 1px solid;
 `;
 
 const ShortMarginButton = styled(Button)`
   & + & {
     margin-left: 0.5rem;
   }
+
 `;
 
 export default function Dialog({
