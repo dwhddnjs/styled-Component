@@ -76,10 +76,6 @@ const StyledButton = styled.button`
   padding-left: 1rem;
   padding-right: 1rem;
 
-  /* 기타 */
-  /* & + & {
-    margin-left: 1rem;
-  } */
 
   /* 크기 */
   ${colorStyles}
